@@ -1,8 +1,15 @@
 'use client';
 
-import { Skeleton } from '@/components/ui/skeleton';
-import { EllipsisIcon, Globe, LockKeyholeIcon } from 'lucide-react';
 import { useRouter } from 'next/navigation';
+import { Skeleton } from '@/components/ui/skeleton';
+import {
+  ActivityIcon,
+  EllipsisIcon,
+  Globe,
+  LockKeyholeIcon,
+  MessageSquare,
+} from 'lucide-react';
+import { formatDistanceToNowStrict } from 'date-fns';
 import React, { useCallback } from 'react';
 
 type PropsType = {
@@ -17,7 +24,7 @@ type PropsType = {
 };
 
 const FormItem = (props: PropsType) => {
-  const { id, formId, name, responses = 0, publish } = props;
+  const { id, formId, name, responses = 0, publish, views, createdAt } = props;
   const router = useRouter();
 
   const onClick = useCallback(() => {
@@ -69,8 +76,19 @@ const FormItem = (props: PropsType) => {
           <div className="flex items-center gap-2">
             <span className="flex text-muted-foreground items-center gap-1 font-[14px]">
               {responses}
+              <MessageSquare className="text-muted-foreground size-[14px]" />
+            </span>
+
+            <span className="flex text-muted-foreground items-center gap-1 font-[14px]">
+              {views}
+              <ActivityIcon className="text-muted-foreground size-[14px]" />
             </span>
           </div>
+          <span className="text-muted-foreground flex gap-1 text-[13px]">
+            {formatDistanceToNowStrict(new Date(createdAt), {
+              addSuffix: true,
+            })}
+          </span>
         </div>
       </div>
     </div>
