@@ -7,6 +7,31 @@ body {
   height: 100%;
 }
 
+.scrollbar {
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: rgb(176, 174, 174) #ddd;
+  transition: scrollbar-color 0.3s ease, scrollbar-width 0.3s ease;
+}
+
+.scrollbar::-webkit-scrollbar {
+  width: 8px;
+}
+
+.scrollbar::-webkit-scrollbar-track {
+  background: #ddd;
+}
+
+.scrollbar::-webkit-scrollbar-thumb {
+  background-color: gray;
+  border-radius: 100%;
+  transition: background-color 0.3s ease;
+}
+
+.scrollbar:hover::-webkit-scrollbar-thumb {
+  background-color: darkgray;
+}
+
 @layer utilities {
   .text-balance {
     text-wrap: balance;

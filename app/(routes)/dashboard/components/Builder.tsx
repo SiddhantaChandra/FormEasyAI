@@ -2,11 +2,12 @@ import React from 'react';
 import { defaultBackgroundColor } from '@/constants';
 import BuilderSidebar from './BuilderSidebar';
 import { SidebarInset, SidebarTrigger } from '@/components/ui/sidebar';
-import BuilderCanvas from './_common/BuilderCanvas';
+import BuilderCanvas from './BuilderCanvas';
+import BuilderBlockProperties from './BuilderBlockProperties';
 
 const Builder = (props: { isSidebarOpen: boolean }) => {
   return (
-    <div>
+    <>
       <BuilderSidebar />
       <SidebarInset className="!p=0 flex-1">
         <div
@@ -19,7 +20,8 @@ const Builder = (props: { isSidebarOpen: boolean }) => {
           <BuilderCanvas />
         </div>
       </SidebarInset>
-    </div>
+      <BuilderBlockProperties />
+    </>
   );
 };
 
