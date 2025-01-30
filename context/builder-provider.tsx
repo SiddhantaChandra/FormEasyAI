@@ -1,6 +1,7 @@
 'use client';
 
-import { FormWithSettings } from '@/@types/form.types';
+import { FormBlockInstance } from '@/@types/form-block.type';
+import { FormWithSettings } from '@/@types/form.type';
 import { useParams } from 'next/navigation';
 import { createContext, useContext, useEffect, useState } from 'react';
 
@@ -9,8 +10,8 @@ type BuilderContextType = {
   formData: FormWithSettings | null;
   setFormData: React.Dispatch<React.SetStateAction<FormWithSettings | null>>;
 
-  blocks: [];
-  setBlocks: React.Dispatch<React.SetStateAction<[]>>;
+  blocks: FormBlockInstance[];
+  setBlocks: React.Dispatch<React.SetStateAction<FormBlockInstance[]>>;
 };
 
 export const BuilderContext = createContext<BuilderContextType | null>(null);
@@ -26,7 +27,7 @@ export default function BuilderContextProvider({
   const [formData, setFormData] = useState<FormWithSettings | null>(null);
 
   const [loading, setLoading] = useState(true);
-  const [blocks, setBlocks] = useState<any>([]);
+  const [blocks, setBlocks] = useState<FormBlockInstance[]>([]);
 
   useEffect(() => {
     const fetchData = async () => {
