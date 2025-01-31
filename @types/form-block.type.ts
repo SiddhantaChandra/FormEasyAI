@@ -13,7 +13,7 @@ export type ObjectBlockType = {
     label: string;
   };
 
-  canvasComponent: React.FC;
+  canvasComponent: React.FC<{ blockInstance: FormBlockInstance }>;
 
   formComponent: React.FC;
 

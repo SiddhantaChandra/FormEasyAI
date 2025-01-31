@@ -5,6 +5,7 @@ import { DndContext, MouseSensor, useSensor, useSensors } from '@dnd-kit/core';
 import { SidebarProvider } from '@/components/ui/sidebar';
 import Builder from './Builder';
 import { useBuilder } from '@/context/builder-provider';
+import BuilderOverlayDrag from './BuilderOverlayDrag';
 
 const FormBuilder = () => {
   const { formData, loading } = useBuilder();
@@ -26,6 +27,7 @@ const FormBuilder = () => {
   return (
     <div>
       <DndContext sensors={useSensors(mouseSensor)}>
+        <BuilderOverlayDrag />
         <SidebarProvider
           open={isSidebarOpen}
           onOpenChange={setIsSidebarOpen}

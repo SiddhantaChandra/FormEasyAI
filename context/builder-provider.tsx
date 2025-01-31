@@ -10,8 +10,9 @@ type BuilderContextType = {
   formData: FormWithSettings | null;
   setFormData: React.Dispatch<React.SetStateAction<FormWithSettings | null>>;
 
-  blocks: FormBlockInstance[];
-  setBlocks: React.Dispatch<React.SetStateAction<FormBlockInstance[]>>;
+  blockLayouts: FormBlockInstance[];
+  setBlockLayouts: React.Dispatch<React.SetStateAction<FormBlockInstance[]>>;
+  addBlockLayout: (blockLayout: FormBlockInstance) => void;
 };
 
 export const BuilderContext = createContext<BuilderContextType | null>(null);
@@ -27,7 +28,7 @@ export default function BuilderContextProvider({
   const [formData, setFormData] = useState<FormWithSettings | null>(null);
 
   const [loading, setLoading] = useState(true);
-  const [blocks, setBlocks] = useState<FormBlockInstance[]>([]);
+  const [blockLayouts, setBlockLayouts] = useState<FormBlockInstance[]>([]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -54,7 +55,7 @@ export default function BuilderContextProvider({
           // Parse `blocks` from the form's `jsonBlocks`
           if (form.jsonBlocks) {
             const parsedBlocks = JSON.parse(form.jsonBlocks);
-            setBlocks(parsedBlocks);
+            setBlockLayouts(parsedBlocks);
           }
         }
       } catch (error) {
@@ -66,14 +67,24 @@ export default function BuilderContextProvider({
 
     fetchData();
   }, [formId]);
+
+  const addBlockLayout = (blockLayout: FormBlockInstance) => {
+    setBlockLayouts((previous) => {
+      const updatedBlock = [...previous];
+      updatedBlock.push(blockLayout);
+      return updatedBlock;
+    });
+  };
+
   return (
     <BuilderContext.Provider
       value={{
         loading,
         formData,
         setFormData,
-        blocks,
-        setBlocks,
+        blockLayouts,
+        setBlockLayouts,
+        addBlockLayout,
       }}
     >
       {children}
