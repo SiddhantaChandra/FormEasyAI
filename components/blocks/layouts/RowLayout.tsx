@@ -40,6 +40,7 @@ function RowLayoutCanvasComponent({
   blockInstance: FormBlockInstance;
 }) {
   const childBlocks = blockInstance.childblocks || [];
+
   return (
     <div className="max-w-full">
       {blockInstance.isLocked && <Border />}
@@ -76,7 +77,14 @@ function RowLayoutCanvasComponent({
             <Button variant="outline" size="icon">
               <Copy />
             </Button>
-            <Button variant="outline" size="icon">
+            <Button
+              variant="outline"
+              size="icon"
+              onClick={(e) => {
+                e.stopPropagation();
+                removeBlockLayout(blockInstance.id);
+              }}
+            >
               <Trash2Icon />
             </Button>
           </CardFooter>

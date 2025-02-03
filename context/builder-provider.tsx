@@ -68,6 +68,10 @@ export default function BuilderContextProvider({
     fetchData();
   }, [formId]);
 
+  const removeBlockLayout = (id: string) => {
+    setBlockLayouts((prev) => prev.filter((block) => block.id === id));
+  };
+
   const addBlockLayout = (blockLayout: FormBlockInstance) => {
     setBlockLayouts((previous) => {
       const updatedBlock = [...previous];

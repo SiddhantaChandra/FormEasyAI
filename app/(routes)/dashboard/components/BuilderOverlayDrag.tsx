@@ -24,7 +24,7 @@ const BuilderOverlayDrag = () => {
 
   if (!draggedItem) return null;
 
-  let fallBackNode = <div>No block drag</div>;
+  let fallBackNode = <div>Cannot drag the block</div>;
 
   const isBlockButtonElement = draggedItem?.data?.current?.isBlockBtnElement;
 

@@ -81,7 +81,7 @@ const StatsCards = (props: {
         </CardHeader>
         <CardContent>
           <p className="text-xs text-muted-foreground">
-            Percentage of forms that recieved responses
+            Rate of forms that recieved responses
           </p>
         </CardContent>
       </Card>
